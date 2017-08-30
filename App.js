@@ -1,21 +1,22 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { View } from 'react-native'
+import { Provider } from 'react-redux'
+import LocalizationWrapper from './localization'
+import store from './redux'
+import ExampleComponent from './screens/ExampleComponent'
+import ExampleHoC from './screens/ExampleHoC'
 
 export default class App extends React.Component {
-  render() {
+  render () {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
+      <Provider store={store}>
+        <LocalizationWrapper>
+          <View style={{flex: 1}}>
+            <ExampleComponent style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} />
+            <ExampleHoC style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} />
+          </View>
+        </LocalizationWrapper>
+      </Provider>
+    )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
